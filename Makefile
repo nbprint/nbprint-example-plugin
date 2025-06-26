@@ -18,15 +18,15 @@ install:  ## install library
 .PHONY: lint lints fix format
 
 lint:  ## run python linter with ruff
-	python -m ruff check nbprint_example_plugin hydra_plugins
-	python -m ruff format --check nbprint_example_plugin hydra_plugins
+	python -m ruff check nbprint_example_plugin
+	python -m ruff format --check nbprint_example_plugin
 
 # Alias
 lints: lint
 
 fix:  ## fix python formatting with ruff
-	python -m ruff check --fix nbprint_example_plugin hydra_plugins
-	python -m ruff format nbprint_example_plugin hydra_plugins
+	python -m ruff check --fix nbprint_example_plugin
+	python -m ruff format nbprint_example_plugin
 
 # alias
 format: fix

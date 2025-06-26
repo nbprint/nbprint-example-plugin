@@ -23,7 +23,14 @@ classifiers = [
     "Programming Language :: Python :: 3.12",
 ]
 
-dependencies = []
+dependencies = [
+    "hydra-core",
+    "lerna",
+    "nbprint",
+]
+
+[project.entry-points."hydra.lernaplugins"]
+nbprint-example-plugin = "nbprint_example_plugin.plugin"
 
 [project.urls]
 Repository = "https://github.com/nbprint/nbprint-example-plugin"
@@ -87,10 +94,7 @@ artifacts = []
 src = "/"
 
 [tool.hatch.build.targets.sdist]
-packages = [
-    "nbprint_example_plugin",
-    "hydra_plugins",
-]
+packages = ["nbprint_example_plugin"]
 include = [
     "LICENSE",
     "README.md",
@@ -103,10 +107,7 @@ exclude = [
 ]
 
 [tool.hatch.build.targets.wheel]
-packages = [
-    "nbprint_example_plugin",
-    "hydra_plugins",
-]
+packages = ["nbprint_example_plugin"]
 exclude = [
     ".copier-answers.yml",
     "/.github",
