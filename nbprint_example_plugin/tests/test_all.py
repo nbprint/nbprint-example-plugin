@@ -1,5 +1,8 @@
-from nbprint_example_plugin import *  # noqa
+from hydra.core.plugins import Plugins
 
 
-def test_all():
-    assert True
+class TestSearchpathPlugin:
+    def test_discover_self(self):
+        p = Plugins()
+        all_ps = [_.__name__ for _ in p.discover()]
+        assert "NBPrintExampleSearchPathPlugin" in all_ps
