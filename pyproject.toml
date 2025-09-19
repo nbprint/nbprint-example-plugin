@@ -25,12 +25,12 @@ classifiers = [
 
 dependencies = [
     "hydra-core",
-    "lerna",
+    "lerna>=1.1.0",
     "nbprint",
 ]
 
 [project.entry-points."hydra.lernaplugins"]
-nbprint-example-plugin = "nbprint_example_plugin.plugin"
+nbprint-example-plugin = "pkg:nbprint_example_plugin.config"
 
 [project.urls]
 Repository = "https://github.com/nbprint/nbprint-example-plugin"
