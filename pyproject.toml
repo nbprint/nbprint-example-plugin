@@ -12,13 +12,8 @@ authors = [
 description = "Example hydra plugin for nbprint"
 readme = "README.md"
 license = { text = "Apache-2.0" }
-<<<<<<< before updating
 version = "0.2.0"
-requires-python = ">=3.9"
-=======
-version = "0.1.0"
 requires-python = ">=3.11"
->>>>>>> after updating
 keywords = []
 
 classifiers = [
@@ -104,28 +99,6 @@ artifacts = []
 src = "/"
 
 [tool.hatch.build.targets.sdist]
-<<<<<<< before updating
-packages = ["nbprint_example_plugin"]
-include = [
-    "LICENSE",
-    "README.md",
-]
-exclude = [
-    ".copier-answers.yml",
-    "/.github",
-    "/.gitattributes",
-    "/.gitignore",
-]
-
-[tool.hatch.build.targets.wheel]
-packages = ["nbprint_example_plugin"]
-exclude = [
-    ".copier-answers.yml",
-    "/.github",
-    "/.gitattributes",
-    "/.gitignore",
-    "/pyproject.toml",
-=======
 packages = [
     "nbprint_example_plugin",
 ]
@@ -133,7 +106,6 @@ packages = [
 [tool.hatch.build.targets.wheel]
 packages = [
     "nbprint_example_plugin",
->>>>>>> after updating
 ]
 
 [tool.hatch.build.targets.wheel.shared-data]
