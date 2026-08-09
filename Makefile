@@ -4,42 +4,57 @@
 .PHONY: develop build install
 
 develop:  ## install dependencies and build library
-	python -m pip install -e .[develop]
+	uv pip install -e .[develop]
+
+requirements:  ## install prerequisite python build requirements
+	python -m pip install --upgrade pip toml
+	python -m pip install `python -c 'import toml; c = toml.load("pyproject.toml"); print("\n".join(c["build-system"]["requires"]))'`
+	python -m pip install `python -c 'import toml; c = toml.load("pyproject.toml"); print(" ".join(c["project"]["optional-dependencies"]["develop"]))'`
 
 build:  ## build the python library
-	python -m build
+	python -m build -n
 
 install:  ## install library
-	python -m pip install .
+	uv pip install .
 
 #########
 # LINTS #
 #########
-.PHONY: lint lints fix format
+.PHONY: lint-py lint-docs fix-py fix-docs lint lints fix format
 
-lint:  ## run python linter with ruff
+lint-py:  ## lint python with ruff
 	python -m ruff check nbprint_example_plugin
 	python -m ruff format --check nbprint_example_plugin
 
-# Alias
-lints: lint
+lint-docs:  ## lint docs with mdformat and codespell
+	python -m mdformat --check README.md 
+	python -m codespell_lib README.md 
 
-fix:  ## fix python formatting with ruff
+fix-py:  ## autoformat python code with ruff
 	python -m ruff check --fix nbprint_example_plugin
 	python -m ruff format nbprint_example_plugin
 
-# alias
+fix-docs:  ## autoformat docs with mdformat and codespell
+	python -m mdformat README.md 
+	python -m codespell_lib --write README.md 
+
+lint: lint-py lint-docs  ## run all linters
+lints: lint
+fix: fix-py fix-docs  ## run all autoformatters
 format: fix
 
 ################
 # Other Checks #
 ################
-.PHONY: check-manifest checks check
+.PHONY: check-dist check-types checks check
 
-check-manifest:  ## check python sdist manifest with check-manifest
-	check-manifest -v
+check-dist:  ## check python sdist and wheel with check-dist
+	check-dist -v
 
-checks: check-manifest
+check-types:  ## check python types with ty
+	ty check --python $$(which python)
+
+checks: check-dist
 
 # Alias
 check: checks
@@ -88,7 +103,7 @@ dist-check:  ## run python dist checker with twine
 
 dist: clean dist-build dist-check  ## build all dists
 
-publish: dist  # publish python assets
+publish: dist  ## publish python assets
 
 #########
 # CLEAN #
