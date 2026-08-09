@@ -12,11 +12,7 @@ requirements:  ## install prerequisite python build requirements
 	python -m pip install `python -c 'import toml; c = toml.load("pyproject.toml"); print(" ".join(c["project"]["optional-dependencies"]["develop"]))'`
 
 build:  ## build the python library
-<<<<<<< before updating
-	python -m build
-=======
 	python -m build -n
->>>>>>> after updating
 
 install:  ## install library
 	uv pip install .
@@ -50,14 +46,10 @@ format: fix
 ################
 # Other Checks #
 ################
-<<<<<<< before updating
-.PHONY: check-manifest checks check
-=======
 .PHONY: check-dist check-types checks check
 
 check-dist:  ## check python sdist and wheel with check-dist
 	check-dist -v
->>>>>>> after updating
 
 check-types:  ## check python types with ty
 	ty check --python $$(which python)
