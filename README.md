@@ -9,14 +9,12 @@ Example hydra plugin for nbprint
 
 ## Overview
 
-<<<<<<< before updating
 This project demonstrates a [Hydra SearchPathPlugin](https://hydra.cc/docs/advanced/plugins/overview/), with a simple example configuration of a `page`.
 
 > [!WARNING]
 >
 > Plugins should always namespace their configuration to not conflict with other plugins!
 > E.g. here we put our page configuration in `page/<plugin name>/default.yaml`
-=======
+
 > [!NOTE]
 > This library was generated using [copier](https://copier.readthedocs.io/en/stable/) from the [Base Python Project Template repository](https://github.com/python-project-templates/base).
->>>>>>> after updating
